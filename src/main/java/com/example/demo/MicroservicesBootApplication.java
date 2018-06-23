@@ -6,16 +6,17 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class MicroservicesBootApplication extends SpringBootServletInitializer{
+public class MicroservicesBootApplication extends SpringBootServletInitializer {
 
 	/**
 	 * Used to run as a jar
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(MicroservicesBootApplication.class, args);
 	}
-	
+
 	/**
 	 * Used to run as a war
 	 */
@@ -23,6 +24,5 @@ public class MicroservicesBootApplication extends SpringBootServletInitializer{
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(MicroservicesBootApplication.class);
 	}
-	
-	
+
 }
