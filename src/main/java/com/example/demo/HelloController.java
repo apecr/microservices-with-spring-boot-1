@@ -5,13 +5,14 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.Player;
 import com.example.demo.domain.Team;
 
-@RestController
+@Controller
 public class HelloController {
 
 	private Team team;
@@ -25,7 +26,7 @@ public class HelloController {
 	}
 
 	@RequestMapping("/hi")
-	public Team hiThere() {
+	public @ResponseBody Team hiThere() {
 		return team;
 	}
 

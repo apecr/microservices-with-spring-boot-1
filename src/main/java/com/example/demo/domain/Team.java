@@ -2,6 +2,9 @@ package com.example.demo.domain;
 
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="team")
 public class Team {
 
 	private String name;
