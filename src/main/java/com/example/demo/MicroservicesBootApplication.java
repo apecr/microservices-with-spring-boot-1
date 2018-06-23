@@ -1,13 +1,21 @@
 package com.example.demo;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication
-public class MicroservicesBootApplication extends SpringBootServletInitializer {
+import com.example.demo.dao.TeamDao;
+import com.example.demo.domain.Player;
+import com.example.demo.domain.Team;
 
+@SpringBootApplication   
+public class MicroservicesBootApplication {
+	
 	/**
 	 * Used to run as a jar
 	 * 
@@ -17,12 +25,16 @@ public class MicroservicesBootApplication extends SpringBootServletInitializer {
 		SpringApplication.run(MicroservicesBootApplication.class, args);
 	}
 
-	/**
-	 * Used to run as a war
-	 */
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(MicroservicesBootApplication.class);
+	@PostConstruct
+	public void init() {
+		Set<Player> players = new HashSet<Player>();
+		players.add(new Player("Charlie Brown", "pitcher"));
+		players.add(new Player("Snoopy", "shortstop"));
+		Team team = new Team("Snoop", "California", "Peanuts", players);
+		teamDao.save(team);
 	}
+
+	@Autowired
+	TeamDao teamDao;
 
 }

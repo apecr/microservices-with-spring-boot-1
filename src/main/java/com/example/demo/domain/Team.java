@@ -2,17 +2,30 @@ package com.example.demo.domain;
 
 import java.util.Set;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-@XmlRootElement(name="team")
+@Entity
 public class Team {
 
+	@Id
+	@GeneratedValue
+	private Long id;
+	@Column
 	private String name;
 
+	@Column
 	private String location;
-
+	@Column
 	private String masscote;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "teamId")
 	private Set<Player> players;
 
 	public Team() {
